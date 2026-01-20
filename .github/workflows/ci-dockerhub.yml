@@ -32,8 +32,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          # Use your literal username if the secret is being stubborn
-          images: ${{ secrets.DOCKERHUB_USERNAME }}/python-ci-lab
+          images: jerlinseraphina/python-ci-lab 
           tags: |
             type=raw,value=latest
 
