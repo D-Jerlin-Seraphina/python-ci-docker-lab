@@ -32,11 +32,10 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
+          # Use your literal username if the secret is being stubborn
           images: ${{ secrets.DOCKERHUB_USERNAME }}/python-ci-lab
           tags: |
-            type=raw,value=latest,enable={{is_default_branch}}
-            type=sha,prefix=sha-,format=short
-            type=ref,event=tag
+            type=raw,value=latest
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -57,4 +56,3 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          platforms: linux/amd64
